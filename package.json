@@ -2,10 +2,16 @@
   "name": "tblogs",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "dev": "next"
+  },
   "license": "MIT",
+  "keywords": [],
+  "author": "Saifur rahman Tanvir",
   "dependencies": {
     "next": "^12.3.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.55.0"
   }
 }
