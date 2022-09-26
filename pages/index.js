@@ -1,13 +1,11 @@
 import React from 'react'
-import Link from 'next/link'
+import Navbar from 'widgets/Navbar'
 
 const Home = () => {
    return (
       <div className='app'>
-         <span>Learning next.js</span>{' '}
-         <Link href='/about'>
-            <a>about</a>
-         </Link>
+         <span>Learning next.js with babel</span>
+         <Navbar />
       </div>
    )
 }

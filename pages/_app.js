@@ -1,5 +1,5 @@
 import React from 'react'
-import '../sass/style.scss'
+import 'styles/style.scss'
 
 const MyApp = ({ Component, pageProps }) => {
    return <Component {...pageProps} />
