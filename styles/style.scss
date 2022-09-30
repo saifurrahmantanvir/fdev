@@ -1,18 +1,93 @@
-body {
-   font-family: Consolas, monospace;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.app {
-   text-align: center;
-   padding: 10px;
-}
+// cabin
 
-nav {
-   display: flex;
-   justify-content: center;
-   gap: 10px;
+@layer components {
+   .section {
+      @apply grid grid-cols-1 md:grid-cols-12 p-5 xs:p-8 md:py-10 md:px-2;
+   }
 
-   a {
-      text-decoration: none;
+   .wrapper {
+      @apply col-start-1 md:col-start-2 md:col-end-12;
+   }
+
+   .nav-link {
+      @apply p-4 md:p-0 cursor-pointer text-gray-500 hover:text-primary-light;
+   }
+
+   .features {
+      @apply absolute px-4 py-3 bg-white rounded-xl shadow-md shadow-blue-200 font-semibold text-sm text-primary-light font-cabin;
+   }
+
+   .heading {
+      @apply relative inline-block font-kumbh-sans text-primary-light uppercase text-3xl mb-16 before:block before:w-24 before:h-[3px] before:absolute before:right-0 before:-bottom-2 before:bg-primary-light before:-rotate-3;
+   }
+
+   .before {
+      @apply before:block before:absolute before:bg-[#c2cceb] before:w-[105%] before:h-[105%] before:rounded-md before:-rotate-[3deg] before:scale-[1.02] before:-inset-1 before:-translate-x-1 before:-z-10;
    }
 }
+
+ /*
+@font-face {
+	font-family: "Sofia Pro";
+	src: url("https://use.typekit.net/af/572508/00000000000000003b9b1a96/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"),url("https://use.typekit.net/af/572508/00000000000000003b9b1a96/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"),url("https://use.typekit.net/af/572508/00000000000000003b9b1a96/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Sofia Pro";
+	src: url("https://use.typekit.net/af/5855b2/00000000000000003b9b1a98/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/5855b2/00000000000000003b9b1a98/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/5855b2/00000000000000003b9b1a98/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: "Sofia Pro";
+	src: url("https://use.typekit.net/af/30420e/00000000000000003b9b1a9e/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"),url("https://use.typekit.net/af/30420e/00000000000000003b9b1a9e/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"),url("https://use.typekit.net/af/30420e/00000000000000003b9b1a9e/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+* {
+   letter-spacing: -0.5px;
+}
+*/
+
+body {
+   font-size: 18px;
+}
+
+::-webkit-scrollbar {
+   display: flex;
+}
+
+.btn {
+   @apply font-kumbh-sans text-xl px-5 py-3;
+}
+
+// .app {
+//    text-align: center;
+//    padding: 10px;
+//    display: flex;
+//    flex-direction: column;
+//    gap: 10px;
+//    align-items: center;
+//    justify-content: center;
+// }
+
+// nav {
+//    display: flex;
+//    justify-content: center;
+//    gap: 10px;
+
+//    a {
+//       text-decoration: none;
+//    }
+// }
