@@ -22,11 +22,19 @@
    }
 
    .heading {
-      @apply relative inline-block font-kumbh-sans text-primary-light uppercase text-3xl mb-16 before:block before:w-24 before:h-[3px] before:absolute before:right-0 before:-bottom-2 before:bg-primary-light before:-rotate-3;
+      @apply relative inline-block font-kumbh-sans text-primary-light uppercase text-2xl xs:text-3xl mb-16 before:block before:w-24 before:h-[3px] before:absolute before:right-0 before:-bottom-2 before:bg-primary-light before:-rotate-3;
    }
 
    .before {
       @apply before:block before:absolute before:bg-[#c2cceb] before:w-[105%] before:h-[105%] before:rounded-md before:-rotate-[3deg] before:scale-[1.02] before:-inset-1 before:-translate-x-1 before:-z-10;
+   }
+
+   .step {
+      @apply before:block before:absolute before:top-0 before:left-0 before:bg-primary-light before:w-0 before:h-full before:-z-10 hover:before:w-full [&>*]:hover:text-white before:transition-all before:duration-300;
+   }
+
+   .testimonial-btn {
+      @apply absolute top-[48%] sm:top-[40%] text-2xl sm:text-3xl px-3 py-[5px] sm:px-5 sm:py-[10px] border-none rounded-2xl bg-primary-light text-white shadow-lg cursor-pointer;
    }
 }
 

@@ -5,6 +5,8 @@ import Navbar from 'widgets/Navbar'
 import Popular from 'sections/Popular'
 import Link from 'next/link'
 import Header from 'sections/Header'
+import Author from 'sections/Author'
+import Testimonials from 'sections/Testimonials'
 
 const fetcher = async (url) => {
    const res = await fetch(url, { method: 'POST' })
@@ -39,6 +41,8 @@ const Home = () => {
 
          <Header />
          <Popular />
+         <Author />
+         <Testimonials />
       </div>
    )
 }
