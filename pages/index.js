@@ -7,6 +7,8 @@ import Link from 'next/link'
 import Header from 'sections/Header'
 import Author from 'sections/Author'
 import Testimonials from 'sections/Testimonials'
+import Signup from 'sections/Signup'
+import Footer from 'sections/Footer'
 
 const fetcher = async (url) => {
    const res = await fetch(url, { method: 'POST' })
@@ -43,6 +45,8 @@ const Home = () => {
          <Popular />
          <Author />
          <Testimonials />
+         <Signup />
+         <Footer />
       </div>
    )
 }

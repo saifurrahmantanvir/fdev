@@ -11,6 +11,7 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@600;700;800&family=Lato:wght@300;400;500;600&family=Mukta:wght@300;400;500;600&display=swap"
           rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Josefin+Sans:wght@300;400;500;600;800&display=swap" rel="stylesheet" />
+        <link rel="shortcut icon" href="/FAVICON.png" type="image/x-icon" />
       </Head>
 
       <body className='font-josefin-sans'>

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 import Author from './Author'
 
@@ -8,7 +9,9 @@ const HeroContent = () => {
          <span className="font-josefin-sans text-gray-500 text-lg lg:text-xl tracking-tight">Learn your desired thing from over <span className='text-primary-light font-cabin'>2000+</span> blogs created by
             the best authors in the world</span>
          <div className="flex gap-3 mb-16 lg:mb-32">
-            <button className="px-4 py-2 bg-primary-light text-white rounded font-semibold">Sign up</button>
+            <Link href='/signup'>
+               <button className="px-4 py-2 bg-primary-light text-white rounded font-semibold">Sign up</button>
+            </Link>
             <button className="px-4 py-2 border-primary-light border-br-1 text-primary-light rounded font-semibold">Start reading</button>
          </div>
          <Author />
