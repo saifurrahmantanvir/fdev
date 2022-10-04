@@ -1,3 +1,4 @@
+// import cookie from "cookie"
 import dbConnect from "lib/dbConnect";
 import User from "models/user";
 
@@ -10,9 +11,13 @@ export default async function handler(req, res) {
       case 'GET':
          const users = await User.find()
 
+
+         // const { jwt } = cookie.parse(req.headers.cookie);
+
          res.status(200).json({
             status: 'success',
             results: users.length,
+            token: req.cookies.jwt,
             data: {
                users
             }

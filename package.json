@@ -10,7 +10,9 @@
   "author": "Saifur rahman Tanvir",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie": "^0.5.0",
     "framer-motion": "^7.5.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.2",
     "next": "^12.3.1",
     "react": "^18.2.0",
