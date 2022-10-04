@@ -2,6 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 
+import { useRouter } from 'next/router'
+
 const fetcher = async (url) => {
    const res = await fetch(url, { method: 'POST' })
    const data = await res.json()
@@ -10,6 +12,7 @@ const fetcher = async (url) => {
 }
 
 const Login = () => {
+   const router = useRouter()
    const [user, setUser] = React.useState({})
    const [loginError, setLoginError] = React.useState('')
 
@@ -43,6 +46,7 @@ const Login = () => {
 
          const { data: { user }, token } = data
          setUser(user)
+         router.push('/')
          console.log(user, token)
       } catch ({ message }) {
          setLoginError(message)
@@ -72,10 +76,10 @@ const Login = () => {
 
             <div className='relative bg-primary-light p-16 overflow-hidden hidden lg:inline-block'>
                <span className='text-gray-100 text-[3.5rem] leading-tight font-bold tracking-tighter'>
-                  Welcome to <span className='font-alata font-medium'>$</span> f.dev family
+                  Welcome to <span className='font-josefin-sans font-medium'>$</span> f.dev family
                </span>
                <span className='font-kumbh-sans absolute left-4 bottom-3 text-[8rem] text-primary-dark font-extrabold tracking-tighter'>
-                  <span className='font-alata font-medium'>$</span> f.dev</span>
+                  <span className='font-josefin-sans font-medium'>$</span> f.dev</span>
             </div>
          </div>
       </div>

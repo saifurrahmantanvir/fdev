@@ -69,10 +69,10 @@ const Register = () => {
 
             <div className='relative bg-primary-light p-16 overflow-hidden hidden lg:inline-block'>
                <span className='text-gray-100 text-[4rem] leading-tight font-bold tracking-tighter'>
-                  Welcome to <span className='font-alata font-medium'>$</span> f.dev family
+                  Welcome to <span className='font-josefin-sans font-medium'>$</span> f.dev family
                </span>
                <span className='font-kumbh-sans absolute left-4 bottom-3 text-[8rem] text-primary-dark font-extrabold tracking-tighter'>
-                  <span className='font-alata font-medium'>$</span> f.dev</span>
+                  <span className='font-josefin-sans font-medium'>$</span> f.dev</span>
             </div>
          </div>
       </div>

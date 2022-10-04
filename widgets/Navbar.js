@@ -10,7 +10,7 @@ const Navbar = () => {
 
    return (
       <nav className="flex items-center justify-between col-span-1 md:col-start-2 md:col-end-12 mb-8">
-         <span className="font-bold text-3xl tracking-tight text-primary-light font-kumbh-sans"><span className='font-alata font-medium'>$</span> f.dev</span>
+         <span className="font-bold text-3xl tracking-tight text-primary-light font-kumbh-sans"><span className='font-josefin-sans font-medium'>$</span> f.dev</span>
 
          <ul className={`nav-list flex flex-col p-5 md:p-3 bg-white font-josefin-sans md:bg-transparent md:flex-row md:gap-8 font-medium fixed z-20 w-2/3 xs:w-1/2 md:w-min left-0 top-0 bottom-0 ${nav ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 md:static transition-transform`}>
             <form className="relative flex mb-3 md:hidden">

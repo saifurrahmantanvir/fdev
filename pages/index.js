@@ -21,6 +21,9 @@ const Home = () => {
          const { status, ...data } = await response.json()
 
          console.log(status, data)
+         if (status === 'error' || status === 'fail') {
+            throw data
+         }
       } catch ({ message }) {
          setLoginError(message)
       }
@@ -33,7 +36,6 @@ const Home = () => {
          </Head>
 
          <Header />
-         <button onClick={getCookie}>getCookie</button>
          <Popular />
          <Author />
          <Testimonials />

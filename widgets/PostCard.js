@@ -11,7 +11,7 @@ const PostCard = () => {
          <div className='flex flex-col gap-2 md:gap-4'>
             <div className='flex justify-between text-primary-light'>
                <span className='text-sm md:text-lg'>{'Saifur rahman'.split(' ')[0]}</span>
-               <span className='font-mukta text-xs md:text-sm'>08 July, 2020</span>
+               <span className='font-cabin text-xs md:text-sm'>08 July, 2020</span>
             </div>
 
             <h3 className='font-kumbh-sans text-sm md:text-xl lg:text-2xl text-gray-800 tracking-tight'>How to get start with open source contribution</h3>

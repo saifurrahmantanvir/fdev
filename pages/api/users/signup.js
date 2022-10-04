@@ -17,8 +17,9 @@ export default async function handler(req, res) {
                name, email, password, passwordConfirm
             })
 
-            createSendToken(user, 201, res)
-         } catch (error) {
+            return createSendToken(user, 201, res)
+         }
+         catch (error) {
             apiErrorHandler(error, res)
          }
          break;

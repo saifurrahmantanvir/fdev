@@ -1,52 +1,34 @@
-// import cookie from "cookie"
 import dbConnect from "lib/dbConnect";
+import apiErrorHandler from "lib/apiErrorHandler";
 import User from "models/user";
+import protect from "middlewares/protect";
 
-export default async function handler(req, res) {
+export default protect(async function (req, res) {
    const { method } = req
 
    await dbConnect()
 
    switch (method) {
       case 'GET':
-         const users = await User.find()
+         try {
+            const users = await User.find()
 
-
-         // const { jwt } = cookie.parse(req.headers.cookie);
-
-         res.status(200).json({
-            status: 'success',
-            results: users.length,
-            token: req.cookies.jwt,
-            data: {
-               users
-            }
-         })
-         break;
-
-      case 'POST':
-         // const { name, email, password, passwordConfirm } = req.body;
-         const {
-            name = 'Asmaul hosna', email = 'hello@ropi.io',
-            password = 'tanvirropi', passwordConfirm = 'tanvirropi'
-         } = req.body;
-         const user = await User.create({
-            name, email, password, passwordConfirm
-         })
-
-         user.password = undefined;
-
-         res.status(201).json({
-            status: 'success',
-            data: {
-               user
-            }
-         })
+            res.status(200).json({
+               status: 'success',
+               results: users.length,
+               data: {
+                  users
+               }
+            })
+         }
+         catch (error) {
+            apiErrorHandler(error, res)
+         }
          break;
 
       default:
-         res.setHeader('Allow', ['GET', 'POST'])
+         res.setHeader('Allow', ['GET'])
          res.status(400).json({ status: 'error', message: '400, method doesn\'t exists on this server!' })
          break;
    }
-}
+})

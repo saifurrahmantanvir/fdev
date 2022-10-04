@@ -25,8 +25,9 @@ export default async function handler(req, res) {
                throw new AppError('Incorrect email or password', 401)
             }
 
-            createSendToken(user, 200, res)
-         } catch (error) {
+            return createSendToken(user, 200, res)
+         }
+         catch (error) {
             apiErrorHandler(error, res)
          }
          break;
