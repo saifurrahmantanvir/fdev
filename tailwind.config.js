@@ -17,17 +17,14 @@ module.exports = {
         'br-1': '1.5px'
       },
       colors: {
-        'primary': '#3838CF',
         'primary-light': '#4267cf',
         'primary-dark': '#3a60c3',
+        'primary-shadow': '#d5dbec',
       },
       fontFamily: {
-        "kumbh-sans": '"Kumbh Sans", monospace',
-        "josefin-sans": '"Josefin Sans", monospace',
-        "lato": '"Lato", sans-serif',
-        "alata": '"Alata", monospace',
-        "cabin": '"Cabin", sans-serif',
-        "mukta": '"Mukta", sans-serif'
+        "kumbh-sans": '"Kumbh Sans", Consolas, monospace',
+        "cabin": '"Cabin", Consolas, monospace',
+        "josefin-sans": '"Josefin Sans", Consolas, monospace',
       },
     },
   },

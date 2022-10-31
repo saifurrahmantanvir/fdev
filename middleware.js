@@ -1,11 +1,8 @@
 /* import { verify } from "jsonwebtoken"; */
 import { NextResponse as res } from "next/server";
 
-const secret = process.env.JWT_SECRET;
-
 export default async function middleware(req) {
    const jwt = req.cookies?.get('jwt')
-   console.log(jwt)
 
    const url = req.url
 

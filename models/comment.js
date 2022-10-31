@@ -6,7 +6,7 @@ const commentSchema = new Schema({
       required: [true, 'Comment cann\'t be empty'],
       trim: true
    },
-   post: {
+   blog: {
       type: Schema.ObjectId,
       ref: 'Post',
       required: [true, 'Comment must belong to a post']

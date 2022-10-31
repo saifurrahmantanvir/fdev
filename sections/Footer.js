@@ -6,7 +6,7 @@ const Footer = () => {
       <footer className='section'>
          <div className='wrapper flex flex-col gap-12'>
             <nav className='flex flex-col md:flex-row gap-5 justify-between items-center'>
-               <ul className='flex text-sm md:text-lg gap-3 md:gap-5'>
+               <ul className='flex text-sm md:text-lg gap-3 md:gap-5 text-gray-500'>
                   <li><Link href="/about"><a className='hover:text-primary-light'>About</a></Link></li>
                   <li><Link href="/"><a className='hover:text-primary-light'>Contact</a></Link></li>
                   <li><Link href="/blogs"><a className='hover:text-primary-light'>Blogs</a></Link></li>

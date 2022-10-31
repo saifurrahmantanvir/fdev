@@ -1,25 +1,54 @@
 import React from 'react'
 import Head from 'next/head'
-import dbConnect from 'lib/dbConnect'
-import User from 'models/user'
+/* import dbConnect from 'lib/dbConnect'
+import User from 'models/user' */
 
-const users = ({ users }) => {
-   /*
+const users = () => {
    const [users, setUsers] = React.useState([])
+   const [blogs, setBlogs] = React.useState([])
+   const [error, setError] = React.useState('')
 
    const getUsers = async () => {
-      const response = await fetch('/api/users', { method: 'GET' })
-      const data = await response.json()
-      console.log(data)
+      try {
+         const response = await fetch('/api/users')
 
-      setUsers(data.data.users)
+         const { status, ...data } = await response.json()
+         console.log(data)
+
+         if (status === 'error' || status === 'fail') {
+            throw data
+         }
+
+         setUsers(data.data.users)
+      }
+      catch (error) {
+         setError(error.message)
+      }
+   }
+
+   const getBlogs = async () => {
+      try {
+         const response = await fetch('/api/blogs')
+
+         const { status, ...data } = await response.json()
+         console.log(data)
+
+         if (status === 'error' || status === 'fail') {
+            throw data
+         }
+
+         setBlogs(data.data.blogs)
+      }
+      catch (error) {
+         setError(error.message)
+      }
    }
 
    React.useEffect(() => {
       getUsers()
+      getBlogs()
 
    }, [])
-   */
 
    return (
       <div className='users'>
@@ -30,10 +59,15 @@ const users = ({ users }) => {
          {users.map((user) => (
             <h3 key={user._id}>{user.name}</h3>
          ))}
+         {blogs.map((blog) => (
+            <img key={blog._id} src={blog.image} alt="blog thumbnail" />
+         ))}
+         {error && <span>{error}</span>}
       </div>
    )
 }
 
+/*
 export async function getServerSideProps() {
    await dbConnect()
 
@@ -48,5 +82,6 @@ export async function getServerSideProps() {
 
    return { props: { users } }
 }
+*/
 
 export default users

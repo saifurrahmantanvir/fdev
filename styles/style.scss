@@ -13,6 +13,10 @@ body {
 }
 
 @layer components {
+   .page {
+      @apply max-w-7xl mx-auto;
+   }
+
    .section {
       @apply grid grid-cols-1 md:grid-cols-12 p-5 xs:p-8 md:py-10 md:px-2;
    }
@@ -30,15 +34,20 @@ body {
    }
 
    .features {
-      @apply absolute px-4 py-3 bg-white rounded-xl shadow-md shadow-blue-200 font-semibold text-sm text-primary-light font-cabin;
+      @apply absolute px-3 py-[10px] lg:px-4 lg:py-3 bg-white rounded-lg lg:rounded-xl shadow-md shadow-blue-200 font-semibold text-xs lg:text-sm text-primary-light font-cabin;
    }
 
    .heading {
-      @apply relative inline-block font-kumbh-sans text-primary-light uppercase text-2xl xs:text-3xl mb-16 before:block before:w-24 before:h-[3px] before:absolute before:right-0 before:-bottom-2 before:bg-primary-light before:-rotate-3;
+      @apply relative inline-block font-kumbh-sans text-primary-light uppercase text-2xl xs:text-3xl mb-12 md:mb-16 before:block before:-z-10 before:w-20 before:h-14 before:absolute before:-left-3 before:-top-2 before:bg-gray-100 whitespace-nowrap;
    }
-
+   
+   /* .heading {
+      @apply relative inline-block font-kumbh-sans text-primary-light uppercase text-2xl xs:text-3xl mb-12 md:mb-16 before:block before:w-24 before:h-[3px] before:absolute before:right-0 before:-bottom-2 before:bg-primary-light before:-rotate-3 whitespace-nowrap;
+   }
+   */
+   /* #c2cceb */
    .before {
-      @apply before:block before:absolute before:bg-[#c2cceb] before:w-[105%] before:h-[105%] before:rounded-md before:-rotate-[3deg] before:scale-[1.02] before:-inset-1 before:-translate-x-1 before:-z-10;
+      @apply before:block before:absolute before:bg-primary-shadow before:w-[105%] before:h-[105%] before:rounded-md before:-rotate-[3deg] before:scale-[1.02] before:-top-[2.5%] before:-left-[2.5%] before:-z-10;
    }
 
    .step {
@@ -46,6 +55,10 @@ body {
    }
 
    .testimonial-btn {
-      @apply absolute top-[48%] sm:top-[40%] text-2xl sm:text-3xl px-3 py-[5px] sm:px-5 sm:py-[10px] border-none rounded-2xl bg-primary-light text-white shadow-lg cursor-pointer;
+      @apply absolute top-[48%] sm:top-[35%] text-2xl sm:text-3xl px-3 py-[5px] sm:px-5 sm:py-[10px] border-none rounded-2xl bg-primary-light text-white shadow-lg cursor-pointer;
+   }
+
+   .blogs {
+      @apply grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-16 px-5 xs:px-8 md:p-0;
    }
 }

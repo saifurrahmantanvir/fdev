@@ -8,21 +8,21 @@ const Author = () => {
             <h2 className="heading">Become an author</h2>
          </div>
 
-         <div className='wrapper flex justify-center gap-8 md:gap-14 flex-wrap lg:flex-nowrap'>
+         <div className='wrapper flex justify-center gap-8 md:gap-14 flex-wrap lg:flex-nowrap tracking-tight'>
             <StepBox
                icon={'icon-basic-todo'}
-               heading={'Choose a plan'}
-               description={'Choose the subscription plan that best fits your needs and sign up today.'}
+               heading={'Send writing sample'}
+               description={'Send us your writing sample via going to become an author page'}
             />
             <StepBox
                icon={'icon-basic-map'}
-               heading={'Order your meal'}
-               description={'Order your delicious meal using our mobile app or website. Or you can even call us!'}
+               heading={'Get approved'}
+               description={'We will review your writing and approve you as an author of f.dev'}
             />
             <StepBox
                icon={'icon-basic-chronometer'}
-               heading={'Enjoy your meal'}
-               description={'Enjoy your meal after less than 15 minutes. See you the next time!'}
+               heading={'Continue writing'}
+               description={'Once you are approved, you are good to go. Continue you journey with us.'}
             />
          </div>
       </section>

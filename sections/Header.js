@@ -13,8 +13,10 @@ const Header = () => {
          <Navbar />
          <HeroContent />
          <HeroCover />
+
       </header>
    )
+
 }
 
 export default Header

@@ -1,12 +1,18 @@
 import { Schema, models, model } from 'mongoose'
+import slugify from 'slugify'
 
-const postSchema = new Schema({
+const blogSchema = new Schema({
    title: {
       type: String,
-      required: [true, 'Post title cann\'t be empty'],
+      required: [true, 'Blog title cann\'t be empty'],
       trim: true
    },
    slug: String,
+   image: {
+      type: String,
+      default: '/POST.jpg',
+      required: [true, 'A post must have an image']
+   },
    text: {
       type: String,
       required: [true, 'Blog cann\'t be empty'],
@@ -22,16 +28,16 @@ const postSchema = new Schema({
    toObject: { virtuals: true }
 })
 
-postSchema.virtual('comments', {
+blogSchema.virtual('comments', {
    ref: 'Comment',
-   foreignField: 'post',
+   foreignField: 'blog',
    localField: '_id'
 })
 
-postSchema.pre('save', function (next) {
+blogSchema.pre('save', function (next) {
    this.slug = slugify(this.title, { lower: true })
 
    next()
 })
 
-export default models.Post || model('Post', postSchema)
+export default models.Blog || model('Blog', blogSchema)

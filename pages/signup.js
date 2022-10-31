@@ -56,7 +56,7 @@ const Register = () => {
                   <input className='input' type='password' name='passwordConfirm' placeholder='Confirm password' defaultValue='tanvirropi' />
                   {/* <input type='file' name='avatar' className='hidden' id='avatar' />
                   <label htmlFor='avatar' className='flex items-center gap-4 mb-12 md:mb-4 hover:cursor-pointer'>
-                     <img src='/AVATAR.png' alt='file-icon' className='h-12 w-12' />
+                     <img src='/avatar.png' alt='file-icon' className='h-12 w-12' />
                      <span className='font-semibold text-purple-dark tracking-tight'>Add an avatar</span>
                   </label> */}
 

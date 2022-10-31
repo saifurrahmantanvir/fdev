@@ -30,7 +30,7 @@ const Home = () => {
    }
 
    return (
-      <div className="w-full">
+      <div className="w-full page">
          <Head>
             <title>Blog application home page</title>
          </Head>
@@ -38,8 +38,10 @@ const Home = () => {
          <Header />
          <Popular />
          <Author />
+
          <Testimonials />
          <Signup />
+
          <Footer />
       </div>
    )

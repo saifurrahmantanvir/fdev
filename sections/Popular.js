@@ -17,9 +17,13 @@ const Popular = () => {
             <h2 className='heading'>Popular blogs</h2>
          </div>
 
-         <motion.div ref={carousel} whileTap={{ cursor: 'grabbing' }}
-            className='wrapper overflow-hidden p-4 cursor-grab'>
-            <motion.div className='flex gap-14 w-max select-none'
+         <motion.div
+            className='wrapper overflow-hidden p-4 cursor-grab'
+            ref={carousel}
+            whileTap={{ cursor: 'grabbing' }}
+         >
+            <motion.div
+               className='flex gap-11 md:gap-14 w-max select-none'
                drag="x"
                dragConstraints={{ right: 0, left: -width }}
             >
@@ -27,7 +31,7 @@ const Popular = () => {
             </motion.div>
 
          </motion.div>
-      </section >
+      </section>
    )
 }
 
