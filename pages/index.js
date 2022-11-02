@@ -6,8 +6,10 @@ import Author from 'sections/Author'
 import Testimonials from 'sections/Testimonials'
 import Signup from 'sections/Signup'
 import Footer from 'sections/Footer'
+import dbConnect from 'lib/dbConnect'
+import Blog from 'models/blog'
 
-const Home = () => {
+const Home = ({ fBlogs }) => {
    const [nav, setNav] = React.useState(false)
    const [loginError, setLoginError] = React.useState('')
 
@@ -15,6 +17,7 @@ const Home = () => {
       setNav(!nav)
    }
 
+   /*
    const getCookie = async () => {
       try {
          const response = await fetch('/api/users')
@@ -28,6 +31,7 @@ const Home = () => {
          setLoginError(message)
       }
    }
+   */
 
    return (
       <div className="w-full page">
@@ -36,7 +40,7 @@ const Home = () => {
          </Head>
 
          <Header />
-         <Popular />
+         <Popular fBlogs={fBlogs} />
          <Author />
 
          <Testimonials />
@@ -45,6 +49,22 @@ const Home = () => {
          <Footer />
       </div>
    )
+}
+
+
+export async function getStaticProps() {
+   await dbConnect()
+
+   const query = await Blog.find({ featured: true })
+
+   const fBlogs = query.map((doc) => {
+      const blog = doc.toObject()
+      blog._id = blog._id.toString()
+
+      return blog
+   }).slice(0, 5)
+
+   return { props: { fBlogs } }
 }
 
 export default Home

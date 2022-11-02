@@ -1,10 +1,11 @@
+import Head from 'next/head';
 import React from 'react'
 
 const post = () => {
-   const [formData, setFormData] = React.useState({ title: '', blog: '' })
-   const [image, setImage] = React.useState('');
    const [createImageURL, setCreateImageURL] = React.useState(null);
+   const [image, setImage] = React.useState('');
    const [blog, setBlog] = React.useState(null)
+
    const uploadToClient = (e) => {
       const [file] = e.target.files;
 
@@ -14,21 +15,21 @@ const post = () => {
       }
    }
 
+   /* -------
    const handleChange = (e) => {
-      setFormData({
-         ...formData,
-         [e.target.name]: e.target.value
-      })
+      setFormData({ ...formData, [e.target.name]: e.target.value })
    }
+   */
 
    const handlePost = async (e) => {
       e.preventDefault()
 
+      const { title, blog } = e.target.elements
+
       const form = new FormData()
 
-      Object.entries(formData).forEach(([key, value]) => {
-         form.append(key, value)
-      })
+      form.append('title', title.value)
+      form.append('blog', blog.value)
 
       /* form.append('image', e.target.elements.image.files[0]) */
       form.append('image', image)
@@ -49,23 +50,40 @@ const post = () => {
    }
 
    return (
-      <div>
-         <form className='flex flex-col gap-8' onSubmit={handlePost}>
-            <input className='input' type='text' name='title' placeholder='Title' defaultValue='A better way of running multiple promises' onChange={handleChange} />
-            <input className='input' type='text' name='blog' placeholder='Blog text' onChange={handleChange} defaultValue='Lorem ipsum may be used as a placeholder before final copy is available.In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
-         <br /><br />In publishing and graphic design, Loreplaceholder text commonly used to demonstratform of a document or a typeface withoumeaningful content. Lorem ipsum may placeholder before final copy is available.Iand graphic design, Lorem ipsum is a placcommonly used to demonstrate the visual form oor a typeface without relying on meaningful coipsum may be used as a placeholder before favailable.In publishing and graphic design, Loa placeholder text commonly used to demonstratform of a document or a typeface withoumeaningful.' />
-            <img src={createImageURL} alt='blog thumbnail' />
-            <input className='input mb-6' type='file' accept='image/*' name='image' placeholder='Text' onChange={uploadToClient} />
+      <div className='page md:px-10'>
+         <Head>
+            <title>Create a blog post</title>
+         </Head>
 
-            <button className='self-start tracking-tight px-4 py-2 bg-primary-light text-white rounded font-semibold'>Post</button>
+         <h2 className='font-kumbh-sans text-[1.8rem] xs:text-4xl uppercase text-primary-light p-5 xs:p-8 md:py-10 md:px-2'>Create a blog post</h2>
+         <form className='section gap-8' onSubmit={handlePost}>
+            <label htmlFor='image' className='col-span-1 md:col-span-5 aspect-[40/28] overflow-hidden cursor-pointer relative flex justify-center border-2 border-primary-light'>
+               <img src={createImageURL ? createImageURL : '/THUMBNAIL.png'} alt='blog thumbnail' className='h-full w-full object-cover' />
+
+               <input className='hidden' type='file' accept='image/*' id='image' name='image' placeholder='Text' onChange={uploadToClient} />
+            </label>
+
+            <div className='grid grid-cols-2 self-start col-span-1 md:col-span-7 gap-5'>
+               <input className='font-kumbh-sans col-span-2 input p-5 text-gray-700 tracking-tight w-full text-3xl' type='text' name='title' placeholder='Title' />
+
+               <div className='text-gray-800'>
+                  <label className='text-[15px]'>Author name</label>
+                  <input className='input tracking-tight w-full opacity-[0.8]' value='Tanvir rahman' readOnly disabled />
+               </div>
+               <div className='text-gray-800'>
+                  <label className='text-[15px]'>Current role</label>
+                  <input className='input tracking-tight w-full opacity-[0.8]' value='Author' readOnly disabled />
+               </div>
+
+               <p className='hidden lg:block col-span-2 tracking-tight text-gray-500'>*** We will review and manually approve your first blog and make you an author. This may take some time to publish your first blog. Once you are approved as an author you won't need approval. ***</p>
+            </div>
+
+            <textarea className='input text-gray-700 tracking-tight w-full h-[35rem] col-span-1 md:col-span-12' type='text' name='blog' placeholder='Blog content' />
+
+            <div className='col-span-1 md:col-span-3'>
+               <button className='self-start tracking-tight px-4 py-2 bg-primary-light text-white rounded font-semibold'>Post</button>
+            </div>
          </form>
-
-         {blog && <div>
-            <img src={blog.image} alt="title" />
-            <h2>{blog.title}</h2>
-            <p>{blog.text}</p>
-         </div>}
-
       </div>
    )
 }

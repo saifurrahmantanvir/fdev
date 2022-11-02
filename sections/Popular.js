@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import PostCard from 'widgets/PostCard';
 
-const Popular = () => {
+const Popular = ({ fBlogs }) => {
    const [width, setWidth] = React.useState(0);
    const carousel = React.useRef();
 
@@ -27,7 +27,7 @@ const Popular = () => {
                drag="x"
                dragConstraints={{ right: 0, left: -width }}
             >
-               {[1, 2, 3, 4]?.map((n, i) => (<PostCard key={i} />))}
+               {fBlogs?.map((blog) => (<PostCard key={blog.slug} blog={blog} />))}
             </motion.div>
 
          </motion.div>

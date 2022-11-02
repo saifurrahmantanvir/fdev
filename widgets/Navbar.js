@@ -22,13 +22,16 @@ const Navbar = () => {
             </form>
 
             <Link href="/about">
-               <a className="nav-link">about</a>
+               <a className="nav-link">About</a>
             </Link>
-            <Link href="/users">
-               <a className="nav-link">users</a>
-            </Link>
+            {/* <Link href="/users">
+               <a className="nav-link">Users</a>
+            </Link> */}
             <Link href="/blogs">
-               <a className="nav-link">blogs</a>
+               <a className="nav-link">Blogs</a>
+            </Link>
+            <Link href='/post'>
+               <a className='nav-link whitespace-nowrap'>Create blog</a>
             </Link>
          </ul>
 

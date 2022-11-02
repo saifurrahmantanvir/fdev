@@ -27,16 +27,16 @@ const readFile = (req, saveLocally) => {
       form.parse(req, async (err, fields, files) => {
          if (err) reject(err)
 
-         const image = slugify(`${fields.title}.jpeg`, { lower: true })
+         const slug = slugify(`${fields.title}-${Date.now()}`, { lower: true })
 
          await sharp(files.image.filepath)
             .raw().ensureAlpha()
-            .resize(400, 280)
+            .resize(600, 405)
             .toFormat('jpeg')
             .jpeg({ quality: 100 })
-            .toFile(path.join(process.cwd(), `public/blog/${image}`))
+            .toFile(path.join(process.cwd(), `public/blog/${slug}.jpeg`))
 
-         resolve({ fields, files })
+         resolve({ fields, files, slug })
       })
 
    })
@@ -69,14 +69,13 @@ export default async function handler(req, res) {
 
       case 'POST':
          try {
-            const { fields: { title, blog } } = await readFile(req, true)
-
-            const image = slugify(`${title}.jpeg`, { lower: true })
+            const { fields: { title, blog }, slug } = await readFile(req, true)
 
             const newBlog = await Blog.create({
                title,
+               slug,
                text: blog,
-               image: `/blog/${image}`
+               image: `/blog/${slug}.jpeg`
             })
 
             res.status(201).json({
@@ -104,20 +103,3 @@ export default async function handler(req, res) {
 export const config = {
    api: { bodyParser: false }
 }
-
-/*
-const post = async (req, res) => {
-   const form = new formidable.IncomingForm();
-   form.parse(req, async function (err, fields, files) {
-     await saveFile(files.file);
-     return res.status(201).send("");
-   });
-};
- 
-const saveFile = async (file) => {
-   const data = fs.readFileSync(file.path);
-   fs.writeFileSync(`./public/${file.name}`, data);
-   await fs.unlinkSync(file.path);
-   return;
-};
-*/

@@ -1,8 +1,12 @@
 import React from 'react'
 import Head from 'next/head';
 import CommonCard from 'widgets/CommonCard';
+import Blog from 'models/blog';
+import dbConnect from 'lib/dbConnect';
 
-const blogs = () => {
+const blogs = ({ blogs, fBlogs }) => {
+   console.log(blogs)
+
    return (
       <section className='section page'>
          <Head>
@@ -14,7 +18,7 @@ const blogs = () => {
          </div>
 
          <div className='wrapper blogs mb-16'>
-            {[1, 2, 3, 4].map((p, i) => (<CommonCard key={i} />))}
+            {fBlogs.map((blog) => (<CommonCard key={blog.slug} blog={blog} />))}
          </div>
 
 
@@ -23,10 +27,27 @@ const blogs = () => {
          </div>
 
          <div className='wrapper blogs'>
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((p, i) => (<CommonCard key={i} />))}
+            {blogs.map((blog) => (<CommonCard key={blog.slug} blog={blog} />))}
          </div>
       </section>
    )
+}
+
+export async function getServerSideProps() {
+   await dbConnect()
+
+   const query = await Blog.find()
+
+   const blogs = query.map((doc) => {
+      const blog = doc.toObject()
+      blog._id = blog._id.toString()
+
+      return blog
+   })
+
+   const fBlogs = blogs.filter((blog) => blog.featured === true)
+
+   return { props: { blogs, fBlogs } }
 }
 
 export default blogs

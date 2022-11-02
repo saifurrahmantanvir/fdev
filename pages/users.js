@@ -7,6 +7,7 @@ const users = () => {
    const [users, setUsers] = React.useState([])
    const [blogs, setBlogs] = React.useState([])
    const [error, setError] = React.useState('')
+   console.log(blogs)
 
    const getUsers = async () => {
       try {

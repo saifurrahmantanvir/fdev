@@ -13,6 +13,10 @@ const blogSchema = new Schema({
       default: '/POST.jpg',
       required: [true, 'A post must have an image']
    },
+   featured: {
+      type: Boolean,
+      default: false
+   },
    text: {
       type: String,
       required: [true, 'Blog cann\'t be empty'],
@@ -34,10 +38,12 @@ blogSchema.virtual('comments', {
    localField: '_id'
 })
 
+/* ------
 blogSchema.pre('save', function (next) {
    this.slug = slugify(this.title, { lower: true })
 
    next()
 })
+*/
 
 export default models.Blog || model('Blog', blogSchema)
