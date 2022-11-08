@@ -1,11 +1,17 @@
 /* import nextConnect from "next-connect"; */
+import jwt from "jsonwebtoken"
+import { promisify } from 'util'
 import path from 'path'
 import sharp from 'sharp';
 import formidable from "formidable";
 import slugify from 'slugify';
 import dbConnect from "lib/dbConnect";
+import User from 'models/user';
 import Blog from "models/blog";
+import AppError from "lib/appError";
 import apiErrorHandler from "lib/apiErrorHandler";
+import restrictTo from "middlewares/restrictTo";
+import protect from "middlewares/protect";
 /* import { resizeImage, uploadImage } from "middlewares/uploadImage"; */
 
 
@@ -44,7 +50,7 @@ const readFile = (req, saveLocally) => {
 
 }
 
-export default async function handler(req, res) {
+export default protect(restrictTo(async function handler(req, res) {
    const { method } = req
 
    await dbConnect()
@@ -68,14 +74,33 @@ export default async function handler(req, res) {
          break;
 
       case 'POST':
+         let token;
+
          try {
+            if (req.cookies?.jwt) {
+               token = req.cookies.jwt
+            }
+
+            if (!token) {
+               throw new AppError('You are not logged in! please log in to post blog', 401)
+            }
+
+            const decoded = await promisify(jwt.verify)(token,
+               process.env.JWT_SECRET)
+            const user = await User.findById(decoded.id)
+            if (!user) {
+               throw new AppError('The user belonging to this token does no longer exist', 401)
+            }
+
             const { fields: { title, blog }, slug } = await readFile(req, true)
 
             const newBlog = await Blog.create({
                title,
                slug,
                text: blog,
-               image: `/blog/${slug}.jpeg`
+               image: `/blog/${slug}.jpeg`,
+               author: decoded.id,
+               published: user.role === 'user' ? false : true
             })
 
             res.status(201).json({
@@ -98,7 +123,7 @@ export default async function handler(req, res) {
          })
          break;
    }
-}
+}, 'author', 'admin'))
 
 export const config = {
    api: { bodyParser: false }

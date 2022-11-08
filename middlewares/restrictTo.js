@@ -1,7 +1,7 @@
 import AppError from "lib/appError"
 import apiErrorHandler from "lib/apiErrorHandler"
 
-export default restrictTo = function (handler, ...roles) {
+export default function (handler, ...roles) {
    return function (req, res) {
       try {
          if (!roles.includes(req.user.role)) {

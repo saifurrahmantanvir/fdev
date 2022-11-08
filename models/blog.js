@@ -1,5 +1,4 @@
 import { Schema, models, model } from 'mongoose'
-import slugify from 'slugify'
 
 const blogSchema = new Schema({
    title: {
@@ -8,6 +7,15 @@ const blogSchema = new Schema({
       trim: true
    },
    slug: String,
+   author: {
+      type: Schema.ObjectId,
+      ref: 'User',
+      required: [true, 'Blog must belong to an author']
+   },
+   published: {
+      type: Boolean,
+      default: true
+   },
    image: {
       type: String,
       default: '/POST.jpg',
@@ -38,12 +46,22 @@ blogSchema.virtual('comments', {
    localField: '_id'
 })
 
+blogSchema.pre(/^find/, function (next) {
+   /* this.find({ published: { $ne: false } }) */
+   this.populate({
+      path: 'author',
+      select: 'name role'
+   })
+
+   next()
+})
+
 /* ------
 blogSchema.pre('save', function (next) {
    this.slug = slugify(this.title, { lower: true })
 
    next()
 })
-*/
+------- */
 
 export default models.Blog || model('Blog', blogSchema)
