@@ -21,8 +21,8 @@ const Navbar = () => {
                   className="h-6 w-h-6" /></button>
             </form>
 
-            <Link href="/about">
-               <a className="nav-link">About</a>
+            <Link href="/">
+               <a className="nav-link">Home</a>
             </Link>
             {/* <Link href="/users">
                <a className="nav-link">Users</a>

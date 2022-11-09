@@ -6,32 +6,19 @@ import Author from 'sections/Author'
 import Testimonials from 'sections/Testimonials'
 import Signup from 'sections/Signup'
 import Footer from 'sections/Footer'
-import dbConnect from 'lib/dbConnect'
-import Blog from 'models/blog'
+import useSWR from 'swr'
+/* import dbConnect from 'lib/dbConnect'
+import Blog from 'models/blog' */
 
-const Home = ({ fBlogs }) => {
-   const [nav, setNav] = React.useState(false)
-   const [loginError, setLoginError] = React.useState('')
+const fetcher = async (url) => {
+   const res = await fetch(url, { method: 'GET' })
+   const data = await res.json()
 
-   const toggleNav = () => {
-      setNav(!nav)
-   }
+   return data
+}
 
-   /*
-   const getCookie = async () => {
-      try {
-         const response = await fetch('/api/users')
-         const { status, ...data } = await response.json()
-
-         console.log(status, data)
-         if (status === 'error' || status === 'fail') {
-            throw data
-         }
-      } catch ({ message }) {
-         setLoginError(message)
-      }
-   }
-   */
+const Home = () => {
+   const { data, error } = useSWR('/api/blogs', fetcher)
 
    return (
       <div className="w-full page">
@@ -40,18 +27,24 @@ const Home = ({ fBlogs }) => {
          </Head>
 
          <Header />
-         <Popular fBlogs={fBlogs} />
+         {
+            data && (
+               <Popular fBlogs={data.data.blogs} />
+            )
+         }
          <Author />
 
          <Testimonials />
          <Signup />
 
          <Footer />
+
       </div>
+
    )
 }
 
-
+/* --------
 export async function getStaticProps() {
    await dbConnect()
 
@@ -67,5 +60,6 @@ export async function getStaticProps() {
 
    return { props: { fBlogs } }
 }
+-------- */
 
 export default Home

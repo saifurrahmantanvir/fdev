@@ -4,7 +4,7 @@ import Link from 'next/link'
 const CommonCard = ({ blog }) => {
    return (
       <Link href={`/blogs/${blog.slug}`}>
-         <div className='flex flex-col gap-8 cursor-pointer'>
+         <div className='flex flex-col items-start gap-8 cursor-pointer'>
             <figure className='relative inline-block shadow-lg rounded-xl bg-transparent before'>
                <img src={blog.image} className='pointer-events-none rounded-md' alt='post image' />
             </figure>

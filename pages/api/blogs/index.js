@@ -87,7 +87,9 @@ export default async function handler(req, res) {
 
             const decoded = await promisify(jwt.verify)(token,
                process.env.JWT_SECRET)
+
             const user = await User.findById(decoded.id)
+
             if (!user) {
                throw new AppError('The user belonging to this token does no longer exist', 401)
             }

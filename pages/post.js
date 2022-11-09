@@ -1,10 +1,12 @@
 import Head from 'next/head';
 import React from 'react'
+import { useRouter } from 'next/router';
 
 const post = () => {
    const [createImageURL, setCreateImageURL] = React.useState(null);
    const [image, setImage] = React.useState('');
-   const [blog, setBlog] = React.useState(null)
+   /* const [blog, setBlog] = React.useState(null) */
+   const router = useRouter()
 
    const uploadToClient = (e) => {
       const [file] = e.target.files;
@@ -46,7 +48,9 @@ const post = () => {
          throw data
       }
 
-      setBlog(data.data.blog)
+      /* setBlog(data.data.blog) */
+
+      router.push(`/blogs/${data.data.blog.slug}`)
    }
 
    return (
