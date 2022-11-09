@@ -12,6 +12,10 @@ body {
    display: flex;
 }
 
+button:focus {
+   outline-color: #4267cf;
+}
+
 label {
    letter-spacing: -0.5px;
 }

@@ -1,11 +1,19 @@
 import React from 'react'
 import Head from 'next/head';
 import CommonCard from 'widgets/CommonCard';
-import Blog from 'models/blog';
-import dbConnect from 'lib/dbConnect';
+import useSWR from 'swr'
+/* import Blog from 'models/blog';
+import dbConnect from 'lib/dbConnect'; */
 
-const blogs = ({ blogs, fBlogs }) => {
-   console.log(blogs)
+const fetcher = async (url) => {
+   const res = await fetch(url, { method: 'GET' })
+   const data = await res.json()
+
+   return data
+}
+
+const blogs = () => {
+   const { data, error } = useSWR('/api/blogs', fetcher)
 
    return (
       <section className='section page'>
@@ -18,7 +26,12 @@ const blogs = ({ blogs, fBlogs }) => {
          </div>
 
          <div className='wrapper blogs mb-16'>
-            {fBlogs.map((blog) => (<CommonCard key={blog.slug} blog={blog} />))}
+            {
+               data && data.data.blogs.filter((blog) => blog.featured === true)
+                  .slice(0, 5).map((blog) => (
+                     <CommonCard key={blog.slug} blog={blog} />
+                  ))
+            }
          </div>
 
 
@@ -27,12 +40,17 @@ const blogs = ({ blogs, fBlogs }) => {
          </div>
 
          <div className='wrapper blogs'>
-            {blogs.map((blog) => (<CommonCard key={blog.slug} blog={blog} />))}
+            {
+               data && data.data.blogs.map((blog) => (
+                  <CommonCard key={blog.slug} blog={blog} />
+               ))
+            }
          </div>
       </section>
    )
 }
 
+/* --------
 export async function getServerSideProps() {
    await dbConnect()
 
@@ -50,5 +68,6 @@ export async function getServerSideProps() {
 
    return { props: { blogs, fBlogs } }
 }
+-------- */
 
 export default blogs
