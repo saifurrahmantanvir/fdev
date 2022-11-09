@@ -11,7 +11,7 @@ export default async function handler(req, res) {
       case 'GET':
          try {
             const { slug } = req.query;
-            const blog = await Blog.findOne({ slug }).populate('comments')
+            const blog = await Blog.findOne({ slug })
 
             res.status(200).json({
                status: 'success',

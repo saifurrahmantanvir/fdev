@@ -57,7 +57,7 @@ const Comments = ({ comments, id, slug }) => {
                </div>
             )}
 
-            {!comments.length ? null : comments.map(({ id, user, comment }) => (
+            {!comments?.length ? null : comments.map(({ id, user, comment }) => (
                <div className='grid grid-cols-[min-content,1fr] gap-2 gap-x-4 tracking-tight' key={id}>
                   <figure className='row-span-2 h-12 w-12'>
                      <img src='/avatar.png' alt='comment author' className='h-12 w-12' />

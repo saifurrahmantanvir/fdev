@@ -50,7 +50,7 @@ const readFile = (req, saveLocally) => {
 
 }
 
-export default protect(restrictTo(async function handler(req, res) {
+export default async function handler(req, res) {
    const { method } = req
 
    await dbConnect()
@@ -123,7 +123,7 @@ export default protect(restrictTo(async function handler(req, res) {
          })
          break;
    }
-}, 'author', 'admin'))
+}
 
 export const config = {
    api: { bodyParser: false }

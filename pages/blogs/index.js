@@ -41,6 +41,7 @@ export async function getServerSideProps() {
    const blogs = query.map((doc) => {
       const blog = doc.toObject()
       blog._id = blog._id.toString()
+      blog.author._id = blog.author._id.toString()
 
       return blog
    })
