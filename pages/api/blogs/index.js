@@ -40,8 +40,7 @@ const readFile = (req, saveLocally) => {
             .resize(600, 405)
             .toFormat('jpeg')
             .jpeg({ quality: 100 })
-            /* .toFile(path.join(process.cwd(), `public/blog/${slug}.jpeg`)) */
-            .toFile(`./public/blog/${slug}.jpeg`)
+            .toFile(path.join(process.cwd(), `public/blog/${slug}.jpeg`))
 
          resolve({ fields, files, slug })
       })
