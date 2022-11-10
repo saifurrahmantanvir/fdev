@@ -1,7 +1,6 @@
-import Blog from "models/blog"
+import Comment from "models/comment"
 import dbConnect from "lib/dbConnect"
 import apiErrorHandler from "lib/apiErrorHandler"
-import AppError from "lib/appError"
 
 export default async function handler(req, res) {
    const { method } = req
@@ -11,17 +10,14 @@ export default async function handler(req, res) {
    switch (method) {
       case 'GET':
          try {
-            const { slug } = req.query;
-            const blog = await Blog.findOne({ slug })
-
-            if (!blog) {
-               throw new AppError('404, blog not found. Something went wrong!', 404)
-            }
+            const { id } = req.query;
+            const comments = await Comment.find({ blog: id })
 
             res.status(200).json({
                status: 'success',
+               results: comments.length,
                data: {
-                  blog
+                  comments
                }
             })
          }

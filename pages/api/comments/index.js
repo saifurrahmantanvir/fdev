@@ -11,8 +11,6 @@ export default protect(async function (req, res) {
    switch (method) {
       case 'GET':
          try {
-            console.log(req.user)
-
             const users = await Comment.find()
 
             res.status(200).json({

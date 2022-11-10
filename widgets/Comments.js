@@ -1,9 +1,27 @@
 import React from 'react'
 
-const Comments = ({ comments, id, slug }) => {
-   const [comment, setComment] = React.useState({})
+const Comments = ({ id }) => {
+   const [commentInfo, setCommentInfo] = React.useState({})
+   const [comments, setComments] = React.useState([])
    const [status, setStatus] = React.useState('')
-   console.log(comment)
+
+   const getComments = async (id) => {
+      try {
+         const response = await fetch(`/api/comments/${id}`)
+
+         const { status, ...data } = await response.json()
+         console.log("COMMENTS", data)
+
+         if (status === 'error' || status === 'fail') {
+            throw data
+         }
+
+         setComments(data.data.comments)
+      }
+      catch (error) {
+         console.log(error.message)
+      }
+   }
 
    const handleComment = async (e) => {
       e.preventDefault()
@@ -24,17 +42,19 @@ const Comments = ({ comments, id, slug }) => {
          const { status, ...data } = await response.json()
          if (status === 'fail') throw data
 
-         setComment(data.data.comment)
+         setCommentInfo(data.data)
          setStatus('')
 
-         e.target.elements.comment.value = ''
+         e.target.elements.comment.value = '';
       } catch ({ message }) {
          setStatus(message)
       }
    }
 
    React.useEffect(() => {
-      setComment({})
+      setCommentInfo({})
+      getComments(id)
+
       setStatus('')
 
    }, [id])
@@ -47,13 +67,13 @@ const Comments = ({ comments, id, slug }) => {
          </form>
 
          <div className='flex flex-col gap-8'>
-            {comment?.comment && (
+            {commentInfo?.comment && (
                <div className='grid grid-cols-[min-content,1fr] gap-2 gap-x-4 tracking-tight'>
                   <figure className='row-span-2 h-12 w-12'>
                      <img src='/PROFILE.png' alt='' className='h-12 w-12' />
                   </figure>
-                  <h4 className='text-xl'>{comment.user}</h4>
-                  <p className='text-lg text-gray-500'>{comment.comment}</p>
+                  <h4 className='text-xl'>{commentInfo.user}</h4>
+                  <p className='text-lg text-gray-500'>{commentInfo.comment.comment}</p>
                </div>
             )}
 

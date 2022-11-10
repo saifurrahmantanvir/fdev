@@ -40,12 +40,6 @@ const blogSchema = new Schema({
    toObject: { virtuals: true }
 })
 
-blogSchema.virtual('comments', {
-   ref: 'Comment',
-   foreignField: 'blog',
-   localField: '_id'
-})
-
 blogSchema.pre(/^find/, function (next) {
    /* this.find({ published: { $ne: false } }) */
    this.populate({
@@ -57,6 +51,12 @@ blogSchema.pre(/^find/, function (next) {
 })
 
 /* ------
+blogSchema.virtual('comments', {
+   ref: 'Comment',
+   foreignField: 'blog',
+   localField: '_id'
+})
+
 blogSchema.pre('save', function (next) {
    this.slug = slugify(this.title, { lower: true })
 

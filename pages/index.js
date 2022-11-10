@@ -29,7 +29,7 @@ const Home = () => {
          <Header />
          {
             data && (
-               <Popular fBlogs={data.data.blogs} />
+               <Popular fBlogs={data.data.blogs.slice(0, 5)} />
             )
          }
          <Author />

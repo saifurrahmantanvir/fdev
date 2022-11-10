@@ -35,5 +35,4 @@ commentSchema.pre(/^find/, function (next) {
    next()
 })
 
-/* export default models.Comment || model('Comment', commentSchema) */
-export default model('Comment', commentSchema)
+export default models.Comment || model('Comment', commentSchema)

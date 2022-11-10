@@ -10,22 +10,21 @@ import User from 'models/user';
 import Blog from "models/blog";
 import AppError from "lib/appError";
 import apiErrorHandler from "lib/apiErrorHandler";
-import restrictTo from "middlewares/restrictTo";
+/* import restrictTo from "middlewares/restrictTo";
 import protect from "middlewares/protect";
-/* import { resizeImage, uploadImage } from "middlewares/uploadImage"; */
+import { resizeImage, uploadImage } from "middlewares/uploadImage"; */
 
-
+/* ------
 const readFile = (req, saveLocally) => {
    const options = {}
 
-   /* ----------
+   /* Commented
    if (saveLocally) {
       options.uploadDir = path.join(process.cwd(), '/public/blog')
       options.filename = (name, ext, part, form) => {
          return slugify(`${name}.jpeg`, { lower: true })
       }
    }
-   -- */
 
    const form = formidable(options)
 
@@ -49,6 +48,7 @@ const readFile = (req, saveLocally) => {
 
 
 }
+------ */
 
 export default async function handler(req, res) {
    const { method } = req
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
    switch (method) {
       case 'GET':
          try {
-            const blogs = await Blog.find()
+            const blogs = await Blog.find({ published: { $ne: false } })
 
             res.status(200).json({
                status: 'success',
@@ -73,6 +73,10 @@ export default async function handler(req, res) {
          }
          break;
 
+      /**
+       THIS method does work in development. However in production, it doesn't work because we are trying to write file in the file system using 'readFile' function and sharp that is now allowed by vercel where this website is hosted.
+       * 
+       * 
       case 'POST':
          let token;
 
@@ -116,9 +120,10 @@ export default async function handler(req, res) {
             apiErrorHandler(error, res)
          }
          break;
+      */
 
       default:
-         res.setHeader('Allow', ['GET', 'POST'])
+         res.setHeader('Allow', ['GET'])
          res.status(400).json({
             status: 'error',
             message: '400, method doesn\'t exists on this ROUTE!'

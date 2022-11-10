@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head';
 import CommonCard from 'widgets/CommonCard';
 import useSWR from 'swr'
+import Navbar from 'widgets/Navbar';
 /* import Blog from 'models/blog';
 import dbConnect from 'lib/dbConnect'; */
 
@@ -21,7 +22,9 @@ const blogs = () => {
             <title>All blogs collection of fdev</title>
          </Head>
 
-         <div className='wrapper'>
+         <Navbar />
+
+         <div className='wrapper mt-8'>
             <h2 className='heading'>Popular blogs</h2>
          </div>
 

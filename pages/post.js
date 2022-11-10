@@ -1,12 +1,14 @@
 import Head from 'next/head';
 import React from 'react'
 import { useRouter } from 'next/router';
+import Navbar from 'widgets/Navbar';
 
 const post = () => {
    const [createImageURL, setCreateImageURL] = React.useState(null);
    const [image, setImage] = React.useState('');
-   /* const [blog, setBlog] = React.useState(null) */
+   /* const [blog, setBlog] = React.useState(null)
    const router = useRouter()
+   */
 
    const uploadToClient = (e) => {
       const [file] = e.target.files;
@@ -26,6 +28,8 @@ const post = () => {
    const handlePost = async (e) => {
       e.preventDefault()
 
+      /**
+       * 
       const { title, blog } = e.target.elements
 
       const form = new FormData()
@@ -33,7 +37,9 @@ const post = () => {
       form.append('title', title.value)
       form.append('blog', blog.value)
 
-      /* form.append('image', e.target.elements.image.files[0]) */
+      /* Commented
+      form.append('image', e.target.elements.image.files[0])
+
       form.append('image', image)
 
       const response = await fetch('/api/blogs', {
@@ -48,18 +54,25 @@ const post = () => {
          throw data
       }
 
-      /* setBlog(data.data.blog) */
+      /* Commented
+      setBlog(data.data.blog)
 
       router.push(`/blogs/${data.data.blog.slug}`)
+      */
    }
 
    return (
       <div className='page md:px-10'>
          <Head>
-            <title>Create a blog post</title>
+            <title>Write a blog post</title>
          </Head>
 
-         <h2 className='font-kumbh-sans text-[1.8rem] xs:text-4xl uppercase text-primary-light p-5 xs:p-8 md:py-10 md:px-2'>Create a blog post</h2>
+         <div className='p-5 xs:p-6 md:py-8 md:px-2'>
+            <Navbar />
+         </div>
+
+         <h2 className='font-kumbh-sans text-[1.8rem] xs:text-4xl uppercase text-primary-light p-5 xs:p-8 md:py-8 md:px-2'>Write a blog post</h2>
+
          <form className='section gap-8' onSubmit={handlePost}>
             <label htmlFor='image' className='col-span-1 md:col-span-5 aspect-[40/28] overflow-hidden cursor-pointer relative flex justify-center border-2 border-primary-light'>
                <img src={createImageURL ? createImageURL : '/THUMBNAIL.png'} alt='blog thumbnail' className='h-full w-full object-cover' />
@@ -85,9 +98,11 @@ const post = () => {
             <textarea className='input text-gray-700 tracking-tight w-full h-[35rem] col-span-1 md:col-span-12' type='text' name='blog' placeholder='Blog content' />
 
             <div className='col-span-1 md:col-span-3'>
-               <button className='self-start tracking-tight px-4 py-2 bg-primary-light text-white rounded font-semibold'>Post</button>
+               <button disabled className='self-start tracking-tight px-4 py-2 bg-primary-light text-white rounded font-semibold disabled:opacity-[0.8]'>Post</button>
             </div>
          </form>
+
+         <p className='p-5 xs:p-8 md:px-2 mb-12 uppercase texl-lg md:text-3xl text-primary-dark tracking-tighter'>Posting is disabled due to some hosting issue of vercel</p>
       </div>
    )
 }
